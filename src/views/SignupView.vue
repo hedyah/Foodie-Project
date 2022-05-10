@@ -20,7 +20,7 @@
         <div v-else></div>
         </div>
         
-        
+      <FooterComp/>
     </div>
 </template>
 
@@ -28,8 +28,9 @@
 import HeaderComp from '@/components/HeaderComp.vue'
 import SignupComp from '@/components/SignupComp.vue'
 import SignResComp from '@/components/SignResComp.vue'
+import FooterComp from '@/components/FooterComp.vue'
     export default {
-        components: { HeaderComp, SignupComp, SignResComp },
+        components: { HeaderComp, SignupComp, SignResComp, FooterComp },
         name: "SignupView",
         data(){
       return{
@@ -53,7 +54,7 @@ import SignResComp from '@/components/SignResComp.vue'
 .gridcontainer{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    
+    margin-bottom: 30px;
 }
 button{
   border: 2px solid #283618;

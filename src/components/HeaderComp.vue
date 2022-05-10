@@ -14,8 +14,8 @@
 
     <v-spacer></v-spacer>
 
-    <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn @click="$router.push('/login')" text>
+    <v-toolbar-items class="hidden-sx-and-down">
+      <v-btn class="hidden-sm-and-down" @click="$router.push('/login')" text>
         Restaurants
       </v-btn>
 
@@ -33,7 +33,7 @@
       </v-btn>
       <v-divider vertical></v-divider>
 
-      <v-btn @click="$router.push('/customer/order')" text>
+      <v-btn class="hidden-sm-and-down" @click="$router.push('/customer/order')" text>
         <img src="https://i.pinimg.com/736x/b6/4e/88/b64e883557a7ca8cc251aa7ab04fb565.jpg" alt="">
 
       </v-btn>
@@ -41,10 +41,7 @@
       <v-divider vertical></v-divider>
     </v-toolbar-items>
 
-    <v-app-bar-nav-icon>
-    
 
-    </v-app-bar-nav-icon>
   </v-toolbar>
 </template>
 

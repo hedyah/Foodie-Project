@@ -15,7 +15,7 @@
     <input type="password" placeholder="Password" v-model="password" name="password" >
     </div>
     <div>
-    <button @click=" $router.push('/sign')" >Sign Up</button>
+    <button class="hidden-sm-and-down" @click=" $router.push('/sign')" >Sign Up</button>
     <button @click="handleUserLogin"> Customer Login</button> 
     <button @click="handleRestaurantLogin">Restaurant Login</button>
     </div>

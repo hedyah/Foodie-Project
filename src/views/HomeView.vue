@@ -1,5 +1,7 @@
 <template>
+
 <div>
+  
   <HeaderComp/>
   <ClientComp/>
   <div class="topimg">
@@ -63,6 +65,7 @@
       
     ></v-carousel-item>
   </v-carousel> -->
+  <FooterComp/>
   
 </div>
 
@@ -70,33 +73,19 @@
 
 
 <script>
+
 import ClientComp from '@/components/ClientComp.vue'
 import HeaderComp from '@/components/HeaderComp.vue'
+import FooterComp from '@/components/FooterComp.vue'
 
   export default {
     name: 'HomeView',
     components: {
       ClientComp,
-        HeaderComp
+        HeaderComp,
+        FooterComp
     },
-    // data () {
-    //   return {
-    //     items: [
-    //       {
-    //         src: 'https://images.pexels.com/photos/983299/pexels-photo-983299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    //       },
-    //       {
-    //         src: 'https://images.pexels.com/photos/688804/pexels-photo-688804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    //       },
-    //       {
-    //         src: 'https://images.pexels.com/photos/1484511/pexels-photo-1484511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    //       },
-    //       {
-    //         src: 'https://images.pexels.com/photos/1370939/pexels-photo-1370939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    //       },
-    //     ],
-    //   }
-    // },
+    
   }
   
 
@@ -174,4 +163,6 @@ h4{
     color: #FEFAE0;
   }
 }
+$grid-breakpoints: ( xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl:
+1400px );
 </style>

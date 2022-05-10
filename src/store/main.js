@@ -8,7 +8,8 @@ export const useMainStore = defineStore('main', {
         return {
             clientResponse: undefined,
             restaurantResponse: undefined,
-            menuResponse: []
+            menuResponse: [],
+            orderResponse:[]
         }
     },
     actions :{
@@ -90,7 +91,7 @@ export const useMainStore = defineStore('main', {
                 cookies.get('loginToken');
                 console.log(cookies.get('loginToken'));
                 console.log(response.data[0].username);
-                this.clientResponse = response;
+                this.clientResponse = response.data;
                 
                 
                 
@@ -115,6 +116,28 @@ export const useMainStore = defineStore('main', {
                 }
             }).then((response) =>{
                 console.log(response);
+                cookies.set('loginToken', response.data.token)
+                router.push('/customer')
+            }).catch((error)=>{
+                console.log(error.response.data);
+            })
+        },
+        getLoginUpdate(username, password){
+            axios.request({
+                url: process.env.VUE_APP_API_URL + "client",
+                method:"PATCH",
+                headers:{
+                    "x-api-key": process.env.VUE_APP_API_KEY,
+                    'Content-Type' : 'application/json',
+                    "token":cookies.get('loginToken')
+                },
+                data:{
+                    username,
+                    password
+                }
+            }).then((response) =>{
+                console.log(response);
+                cookies.get('loginToken')
                 router.push('/customer')
             }).catch((error)=>{
                 console.log(error.response.data);
@@ -217,14 +240,10 @@ export const useMainStore = defineStore('main', {
             }).then((response)=>{
                 console.log(response);
                 console.log(response.data);
+                this.restaurantResponse = response.data;
                 console.log(cookies.get('restaurantToken'));
                 cookies.get('restaurantToken');
-                // console.log(response.data[3].name);
-                // console.log(response.data[3].phoneNum);
-                // console.log(response.data[3].address);
-                // console.log(response.data[3].city);
-                // console.log(response.data[3].email);
-                this.restaurantResponse = response.data;
+                
                 
             }).catch((error)=>{
                 console.log(error);
@@ -295,7 +314,7 @@ export const useMainStore = defineStore('main', {
                 console.log(error.response);
             })
         },
-        menuGet(restaurantId){
+        menuGet(restaurantId,menuId){
             axios.request({
                 url: process.env.VUE_APP_API_URL + "menu",
                 method:"GET",
@@ -303,7 +322,8 @@ export const useMainStore = defineStore('main', {
                     "x-api-key": process.env.VUE_APP_API_KEY,
                 },
                 params:{
-                restaurantId
+                restaurantId,
+                menuId
                 }
                 
             }).then((response)=>{
@@ -328,11 +348,14 @@ export const useMainStore = defineStore('main', {
                 },
                 data:{
                     restaurantId,
-                    items,
+                    items
                 }
                 
             }).then((response)=>{
                 console.log(response);
+                console.log(response.data);
+                console.log(cookies.get('loginToken'));
+                cookies.get('loginToken')
                 //cookies.get('restaurantToken')
 
             }).catch((error)=>{
@@ -349,13 +372,13 @@ export const useMainStore = defineStore('main', {
                     "x-api-key": process.env.VUE_APP_API_KEY,
                     'Content-Type' : 'application/json'
                 },
-                data:{
-                "restaurantId": 43,
-                    "items":[41,40]
-                }
+                
                 
             }).then((response)=>{
                 console.log(response);
+                console.log(response.data);
+                this.orderResponse = response.data;
+                console.log(cookies.get('loginToken'));
                 //cookies.get('restaurantToken')
 
             }).catch((error)=>{

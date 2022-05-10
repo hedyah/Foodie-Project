@@ -1,4 +1,5 @@
 <template>
+
     <div id="header">
         <h1>Welcome to Foodie</h1>
         

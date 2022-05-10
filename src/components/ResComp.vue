@@ -6,19 +6,24 @@
         <img src="https://images.pexels.com/photos/1126728/pexels-photo-1126728.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
         </div>
     
+    <h1>Click to Choose </h1>
+
         <button @click="restaurantLogOut">Log out</button>
-        <button @click="restaurantInfo" > Profile </button>
+        <button @click="toggleProfile"> Profile</button>
+        <div v-if="isProfileShown">
             <div class="profile" v-for="restaurant in restaurantResponse" :key="restaurant.restaurantId">
                 <h4>{{restaurant.name}}</h4>
                 <p>{{restaurant.address}}</p>
                 <p>{{restaurant.email}}</p>
                 <p>{{restaurant.bio}}</p>
                 <p>{{restaurant.city}}</p>
+                
+                </div>
             </div>
 
             
-            
-            <div class="menudiv">
+            <button @click="toggleMenu">Add Menu items</button>
+            <div v-if="isMenuShown" class="menudiv">
             <h3  > Add Menu items</h3>
             <input type="text" v-model="name" placeholder="Name of the Dish" name="name of the dish">
             <input type="text" v-model="description" placeholder="Description" name="description">
@@ -27,13 +32,15 @@
             <button @click="getResInfo" > submit</button>
             </div>
             
-            <div class="menudiv" >
+            <button @click="toggleMenuDelete">Delete Menu Items</button>
+            <div v-if="isDeleteShown" class="menudiv" >
             <h3>Delete Menu items</h3>
             <input type="text" placeholder="Enter Menu Id" v-model="menuId">
             <button @click="deletemenuItem">Delete menu item</button>
             </div>
 
-            <div class="menudiv">
+            <button @click="toggleUpdate">Update Profile</button>
+            <div v-if="isUpdateShown" class="menudiv">
             <h3>Update Profile</h3>
             <input type="text" placeholder="Name" v-model="name">
             <input type="text" placeholder="Banner Url" v-model="bannerUrl">
@@ -43,9 +50,9 @@
             <button @click="updateResInfo">Update Changes</button>
             </div>
 
-                <button @click="menuGet">See menu items</button>
+                <button @click="toggleMenuList">See menu items</button>
             
-            <div class="menuList">
+            <div v-if="isMenulistShown" class="menuList">
             <div v-for="menu in menuResponse " :key="menu.menuId" >
             <h3>{{menu.name}}</h3>
             <h4>{{menu.description}}</h4>
@@ -87,7 +94,22 @@ import { useMainStore } from '@/store/main'
             },
             deletemenuItem(){
                 this.menuDelete(this.menuId)
-            }
+            },
+            toggleProfile() {
+        this.isProfileShown = !this.isProfileShown;
+        },
+        toggleMenu() {
+        this.isMenuShown = !this.isMenuShown;
+        },
+        toggleMenuDelete() {
+        this.isDeleteShown = !this.isDeleteShown;
+        },
+        toggleUpdate() {
+        this.isUpdateShown = !this.isUpdateShown;
+        },
+        toggleMenuList() {
+        this.isMenulistShown = !this.isMenulistShown;
+        },
             
             
 
@@ -104,7 +126,11 @@ import { useMainStore } from '@/store/main'
             bio:'',
             phoneNum:'',
             menuId:'',
-            
+            isProfileShown: false,
+            isMenuShown:false,
+            isDeleteShown:false,
+            isUpdateShown:false,
+            isMenulistShown:false
         }),
         
     }
@@ -176,7 +202,15 @@ button{
     margin: 10px;
     background-color: #283618;
     color: #FEFAE0;
+    width: 25%;
+    font-size: 20px;
+    padding: 3px;
     
+}
+h1{
+    text-align: center;
+    background-color: #DDA15E;
+    color: #FEFAE0;
 }
 
 </style>

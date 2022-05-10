@@ -2,10 +2,10 @@
 <div>
 
 <div class="gridcontainer">
-  <v-card v-for="restaurant in restaurantResponse" :key="restaurant.restaurantId"
+  <v-card  v-for="restaurant in restaurantResponse" :key="restaurant.restaurantId"
     :loading="loading"
-    class="mx-auto my-12"
-    max-width="374"
+    class="sm-auto my-12"
+    max-width="370"
   >
     <template slot="progress">
       <v-progress-linear
@@ -61,7 +61,9 @@
             <h4>{{menu.name}}</h4>
             <p>{{menu.description}}</p>
             <p>{{menu.price}}</p>
+            <p>{{menu.menuId}}</p>
         </div>
+
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
@@ -75,6 +77,13 @@
         @click="menuGet(restaurant.restaurantId)" 
       >
         Menu
+      </v-btn>
+      <v-btn
+        color="light-green darken-4"
+        text
+        @click="$router.push('/customer/order')" 
+      >
+        Order
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -94,6 +103,9 @@ import { useMainStore } from '@/store/main'
         data: () => ({
       loading: false,
       selection: 1,
+      restaurantId:'',
+      items:[''],
+      selected: [''],
     }),
 
     computed:{
@@ -105,7 +117,7 @@ import { useMainStore } from '@/store/main'
 
     methods: {
         
-        ...mapActions(useMainStore,['menuGet','restaurantInfo']),
+        ...mapActions(useMainStore,['menuGet','restaurantInfo', 'postOrder']),
 
       reserve () {
         this.loading = true
@@ -113,6 +125,7 @@ import { useMainStore } from '@/store/main'
         setTimeout(() => (this.loading = false), 2000)
       },
     },
+    
   }
     
 </script>
@@ -121,11 +134,31 @@ import { useMainStore } from '@/store/main'
 img{
     width: 70%;
 }
-.gridcontainer{
+@media only screen and (max-width: 600px){
+  .gridcontainer{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-columns: 1fr;
     
     
 }
+}
+@media only screen and (min-width: 768px) {
+  .gridcontainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    
+}
+}
+@media only screen and (min-width: 1200px) {
+  .gridcontainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
+    
+}
+}
+
+
 
 </style>
