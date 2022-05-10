@@ -54,17 +54,7 @@
     <button @click="$router.push('/login')">see more</button>
   </div>
 </div>
-  <!-- <v-carousel hide-delimiters>
-    <v-carousel-item
-      v-for="(item,i) in items"
-      :key="i"
-      :src="item.src"
-      
-      max-width="500"
-      max-height="550"
-      
-    ></v-carousel-item>
-  </v-carousel> -->
+  
   <FooterComp/>
   
 </div>
