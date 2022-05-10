@@ -164,24 +164,27 @@ div{
 }
 }
 @media only screen and (min-width: 1200px) {
+.topimg{
+    height: 30%;
+}
 .menudiv{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     border: 2px solid #BC6C25;
     background-color: #DDA15E;
     color: #FEFAE0;
-    font-size: 25px;
+    font-size: 18px;
     margin: 5px;
 }
 div{
     input{
-        width: 35%;
+        width: 30%;
         height: 100%;
         background-color: white;
         margin: 15px;
         border: 1px solid black;
-        padding: 15px;
-        font-size: 22px;
+        padding: 10px;
+        font-size: 18px;
     }
     button{
         border: 2px solid black;
